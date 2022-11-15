@@ -15,3 +15,6 @@
  - [ ] Transport of "ghost" in active nematics
 
 ![ghost](images/2022/10/ghost.png)
+
+
+Perry Ellis' PhD thesis for detecting defects.
