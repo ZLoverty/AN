@@ -11,7 +11,7 @@ batchPIV(dir, PIV_folder);
 function batchPIV(dir, PIV_folder) {
     list = getFileList(dir);
     for (i=0; i<list.length; i++) { 
-	    if (endsWith(list[i], ".tif") && startsWith(list[i], "03")) {
+	    if (endsWith(list[i], ".tif")) {
 			//print("list.length");
 			run("Close All");
 			run("Clear Results");
@@ -25,7 +25,7 @@ function batchPIV(dir, PIV_folder) {
 				selectWindow("PIV Analysis");
 				//run("Duplicate...", "duplicate range=j-i_f");
 				run("Duplicate...", "title=PIV_2_slides.tif duplicate range=j-i_f");
-				jack = newdir + "\\_" + j + '.txt';
+				jack = newdir + "\\_" + j + ".txt";
 				//file_name='C:/Users/Jerome Hardouin/Desktop/Claire ratchet/AN/AN_speed_p5_Noise_0.5/PIV_images/PIV_images-1.txt';
 				print(jack);
 				selectWindow("PIV_2_slides.tif");
