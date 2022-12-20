@@ -11,7 +11,7 @@ DNS: 193.54.82.20
 
 #### 1. Access
 
-- From ESPCI local network: https://193.54.88.3:5001/
+- From ESPCI local network (if your IP address is 193.54.88.xxx): https://193.54.88.3:5001/
 - From external network: https://quickconnect.to/actnem
 
 Then you need to input your credentials to login the system. I have created an administrator account:
