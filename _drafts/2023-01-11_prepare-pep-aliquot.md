@@ -14,6 +14,6 @@
 
 Adjust pH to 6.8 using KOH.
 
-> Assuming that we need equal amount of KOH to neutralize the salt, we need $8\times 10^{-5}$ mol KOH. If we prepare 1M KOH stock solution, $10^{-5}$ L, i.e. 10 $\mu$l should be added to the PEP salt solution.
+> Assuming that we need equal amount of KOH to neutralize the salt, we need $8\times 10^{-5}$ mol KOH. If we prepare 1M KOH stock solution, $8\times 10^{-5}$ L, i.e. 80 $\mu$l should be added to the PEP salt solution, to neutralize the salt. (I tried this amount today. Indeed 80 $\mu$l KOH can make the salt fully dissolve, but to increase the pH up to 6.8, I used 120 $\mu$l KOH.)
 
 Note that all the aliquot prep guide can be found in the TextbookNematics from Dogic lab. I put this file in the protocol folder for future reference.
