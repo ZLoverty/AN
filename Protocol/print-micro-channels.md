@@ -1,4 +1,4 @@
-### Print micro-channels
+### Print micro-channels with Nanoscribe
 
 This protocol describes the procedures of printing micro-channels using Nanoscribe two-photon 3D printer at UPMC campus.
 
@@ -6,9 +6,7 @@ This protocol describes the procedures of printing micro-channels using Nanoscri
 
 **Turn on Nanoscribe**
 
-Nanoscribe is essentially a microscope coupled with precise motorized stages, which are controlled by a computer. To turn it on, we turn on the main controller, computer, (bottom
-right I don't know what) and laser in order. They are all in a cupboard under the main machine. Above the cupboard, there is a switch for the microscope, which also needs to be
-turned on.
+Nanoscribe is essentially a microscope coupled with precise motorized stages, which are controlled by a computer. To turn it on, we turn on the main controller, computer, (bottom right I don't know what) and laser in order. They are all in a cupboard under the main machine. Above the cupboard, there is a switch for the microscope, which also needs to be turned on.
 
 **Open the main chamber**
 
@@ -30,17 +28,19 @@ Put a piece of square silicon wafer on the right spot of sample holder, fix with
 
 #### Software
 
+Login the computer as "user", with password "nanoscribeuser".
+
 **deScribe**
 
-- Open .stl file in deScribe, choose IPS 25X recipe and click through to generate .gwl job file.
+- Open .stl file in deScribe, choose IPS 25X Shell recipe and click through to generate .gwl job file. 
 - Use some for loops to repeat a design several times on the wafer. The range
-should be 20 mm x 10 mm. Use include to invoke the design.
+should be 10 mm (X) x 20 mm (Y). Use include to invoke the design.
 - Save another .gwl for the final printing job.
 
 **whiteScribe**
 
+- approach sample
 - load .gwl
-- find interface
 - start the job
 
 #### Development
@@ -50,3 +50,25 @@ should be 20 mm x 10 mm. Use include to invoke the design.
 - Develop in PGMEA for 20 min
 - Wash in IPA for 2 min
 - Dry with air from the back of wafer
+
+#### Clean the objective
+
+- Prepare
+    - two pieces of cleanroom tissue
+    - PGMEA bottle with pipette
+    - IPA bottle with pipette
+- Fold the tissue to have a hard edge
+- Wipe out the leftover resin as much as possible (avoid touching the lens part)
+- Put several drops of IPA on the lens, hold the objective with another tissue, so that solvent does not flow everywhere
+- Blow away the solvent/resin mixture with air pistol, then wipe out the mess
+- repeat the IPA/blow process twice
+- Put several drops of PGMEA on the lense and blow away, like IPA
+- Wash one last time with IPA, air dry
+
+#### Log
+
+- Maxpower log
+- Activity log
+
+
+
