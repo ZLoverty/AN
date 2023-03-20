@@ -10,21 +10,11 @@ Nanoscribe is essentially a microscope coupled with precise motorized stages, wh
 
 **Open the main chamber**
 
-Once everything is on, we can open the main chamber of Nanoscribe. First, unlock the box with the red knob on the very left side. Then, press the "reset" button twice (or more), until the "open" button is blinking. Press "open", the box will open.
+Once everything is on, we can open the main chamber of Nanoscribe. First, unlock the box with the red switch on the very left side. Then, press the "reset" button twice (or more), until the "open" button stops blinking. Press "open", the box will open.
 
 **Install objective**
 
 Take the 25X objective from the (2nd) drawer. Put a white rubber collar around the objective to prevent damages from flowing resin or oil. Then put the objective on the right port.
-
-#### Sample preparation
-
-- Sample holder
-- scotch tape (green)
-- tweezer
-- cut silicon wafer
-- IPS resin
-
-Put a piece of square silicon wafer on the right spot of sample holder, fix with tape. Put a drop of resin in the middle of the wafer. Note that we don't use the first drop that comes out of the resin tube. Flip the sample holder and load it on Nanoscribe.
 
 #### Software
 
@@ -37,11 +27,28 @@ Login the computer as "user", with password "nanoscribeuser".
 should be 10 mm (X) x 20 mm (Y). Use include to invoke the design.
 - Save another .gwl for the final printing job.
 
-**whiteScribe**
+TIP: To place multiple designs on a wafer, use absolute positioning `StageGoto` rather than relative positioning `Moveto`.
 
+**NanoWrite**
+
+- upon opening, the motorized stage will perform a calibration, so open the software before loading any sample
+- select holder type "DiLL 600 um" 
 - approach sample
-- load .gwl
+- load .gwl (double check in deScribe before loading)
 - start the job
+
+
+#### Sample preparation
+
+- Sample holder
+- scotch tape (green)
+- tweezer
+- cut silicon wafer
+- IPS resin
+
+Put a piece of square silicon wafer on the right spot of sample holder, fix with tape. Put a drop of resin in the middle of the wafer. Note that we don't use the first drop that comes out of the resin tube. Flip the sample holder and load it on Nanoscribe.
+
+
 
 #### Development
 
