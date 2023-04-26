@@ -66,3 +66,18 @@ polarization_parameter = (b[:, 1] - b[:, 0]).mean() / average_flow_rate
 ```
 
 These parameters will be calculated and saved in the shared spreadsheet [List of experiments of Bifurcations](https://docs.google.com/spreadsheets/d/1KEaa-VgyC1NET2K7HZfIa7Qk1tyNr5EN32Wwv2pCiNc/edit#gid=0).
+
+**2023-04-26 edit: polarization from smoothed flow rate**
+
+The polarization parameter does not reflect the polarization state very well. For example, the flow rate data of Feb 28, 2023 consist of two samples. Sample 1 shows equal split in B and C, and sample 2 shows a larger flow rate in C and smaller in B. This observation should be reflected in the polarization parameter, if we compute the parameter for the flow rate corresponding to the two samples. 
+
+With the current method, which computes the difference between the two smaller flow rate at each instance, we get 0.298 for sample 1 and 0.353 for sample 2. They are close and does not reflect the difference between the two samples well. 
+
+By smoothing the flow rate, the difference between the polarization parameters gets larger. For example, we smooth the flow rates with Gaussian filter ($\sigma=25$ s), the polarization parameters become 0.194 and 0.331. 
+
+Therefore, we modify the definition of the polarization parameter, by introducing a Gaussian smoothing to the flow rate data. In the code, the following line is added:
+
+```python
+flowrate[["A", "B", "C"]] = gaussian_filter1d(flowrate[["A", "B", "C"]], sigma=50, axis=0)
+```
+
