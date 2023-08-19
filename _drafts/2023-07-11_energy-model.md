@@ -51,11 +51,14 @@ where $\phi_d$ is the favored flow direction (the diode + direction).
 Soft diode:
 
 $$
-H_+ = (\phi_e - \phi_d)^2
+H_+ = \gamma (\phi_e - \phi_d)^2
 $$
 
-where $\phi_d$ is the favored flow rate. If $\phi_e$ deviate from $\phi_d$, energy penalty shoots up.
+where $\phi_d$ is the favored flow rate. If $\phi_e$ deviate from $\phi_d$, energy penalty shoots up. $\gamma$ is a channel specific coefficient, which is introduced to account for the possibility that longer channel may have bigger impact to the total energy.
 
+$$
+H_+(\phi) = (\phi - \phi_0)^2
+$$
 
 #### Coupling
 
@@ -70,10 +73,19 @@ $$
 We vary the coupling coefficients, straight channel models as well as the diode channel models. There are infinite possibilities, but we try to keep our trials clean.
 
 - v0: $a=10,b=1000,c=100$, order 6, hard diode
-- v1: $a=10,b=1000,c=100$, order 6, soft diode
-- v2: $a=10,b=1000,c=100$, order 4, soft diode
+- v1: $a=10,b=1000,c=100$, order 6, soft diode ($\phi_d=1, \gamma=1$)
+- v2: $a=10,b=1000,c=100$, order 4, soft diode ($\phi_d=1, \gamma=1$)
+- v3: $a=10,b=1000,c=100$, order 6, soft diode length ($\phi_d\propto L, \gamma\propto L$)
+- v4: $a=10,b=1000,c=100$, order 4, soft diode length ($\phi_d\propto L, \gamma\propto L$)
+- v5: $a=10,b=1000,c=100$, order 6, soft diode length ($\phi_d\propto 1, \gamma\propto L$)
+- v6: $a=10,b=1000,c=100$, order 4, soft diode length ($\phi_d\propto 1, \gamma\propto L$)
+- v7: $a=10,b=1000,c=100$, order 6, soft diode length ($\phi_d\propto L, \gamma\propto 1$)
+- v8: $a=10,b=1000,c=100$, order 4, soft diode length ($\phi_d\propto L, \gamma\propto 1$)
 
+from v9, input flow potential is imposed, and is denoted as "I". For convenience, the coefficient of input flow potential is set to $b$.
 
+- v9: $a=10,b=1000,c=100$, soft | 4 | 1 | L | I
+- 
 #### Known issues
 
 - Ratchet length is not considered
