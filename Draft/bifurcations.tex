@@ -105,7 +105,7 @@ Specifically, we compare the effects of channel length, ratchets and turning ang
 Our results suggest that ratchets and turning angles help establish unambiguous polarized flow states.
 In contrast, channel length is a less relevant factor, which results in more frequently changing flow states.
 Our experiment is the first step to study active matter behavior in complex channel networks in the simplest form.
-It lays the foundation for realizing networks that can achieve active matter logic and computation.
+The resutls lay the foundation for realizing networks that can achieve active matter logic and computation.
 
 \end{abstract}
 
@@ -113,6 +113,34 @@ It lays the foundation for realizing networks that can achieve active matter log
                               %display desired
 \maketitle
 
+\section{Introduction}
+
+Active fluids flow spontaneously under channel confinement, a phenomenon observed in various active matter systems \cite{Lushi2014,Wioland2016,Wu2017,Duclos2017,Morin2018,Hardouin2020} followed by a theoretical prediction \cite{Voituriez2005}.
+Without addressing the detailed mechanisms that govern the magnitude of the spontaneous flow, \citet{Woodhouse2017} proposed to use a Landau-type bistable potential to model the phenomenon. Combining some other ingredients, such as incompressibility and diode channel, they derived rich and interesting behaviors of active flow networks (AFN), including active matter logic \cite{Woodhouse2016,Woodhouse2017}.
+
+Networks are topologically more complex than channels. 
+The most notable feature is nodes connecting more than two channels, in particular odd number of channels. 
+According to the model by \citet{Woodhouse2017} and the experiment by \citet{Morin2018}, all channels have a preferred flow rate $\phi_0$, given the same channel width and activity.
+However, when three channels are connected to one node, imcompressibility frustrates the flow state where flow rates in all the channels are $\phi_0$.
+In such a frustrated state, the model by \citet{Woodhouse2017} predicts that the most favorable flow state is that the flow enters the node at flow rate $\phi_0$ from one channel and exits at the same flow rate $\phi_0$ through another channel, leaving the flow rate in the third channel $0$.
+Furthermore, if the two outlet channels are of different lengths, the exit flow follows the longer path.  
+This behavior is the fundation to achieve logical operation with active matter confined in channel networks. 
+
+We find it interesting to realize active flow networks in experiment. 
+First, this realization provides a playground to test and improve existing theories, and thus deepen our understanding of active matter behavior in complex environment. 
+Second, this realization lays the foundation for potential applications of active flow networks in mass transport and flow computation. 
+However, experimental realization of AFN is very rare due to the technical challenges in fabricating and properly applying the confinement structure to active matter.
+\textcolor{red}{In particular, the networks are open in 2D, which requires 3D confinement structure, making traditional photolithography technique challenging.}
+
+In this work, we take advantage of a two-photon polymerization based high-precision 3D printing to fabricate open network structures (see Fig.~\ref{fig:bifurcation-experiment}b). 
+We use microtubule-kinesin system as the model active matter to experimentally test all the ingredients in the theory of AFN, namely bistable potential, incompressibility and diode channel. 
+Then, we use these ingredients to predict and understand more complicated bifurcation experiments.
+Our results suggest that ratchets and turning angles help establish unambiguous polarized flow states.
+In contrast, channel length is a less relevant factor, which results in more frequently changing flow states.
+Our experiment is the first step to study active matter behavior in complex channel networks in the simplest form.
+The resutls lay the foundation for realizing networks that can achieve active matter logic and computation.
+
+  
 \begin{figure}[!h]
     \includegraphics[width=0.45\textwidth]{1-bifurcation-question}
     \caption{
@@ -128,6 +156,8 @@ It lays the foundation for realizing networks that can achieve active matter log
     }
     \label{fig:bifurcation-question}
 \end{figure}
+
+\section{Experiment}
 
 \begin{figure}[!h]
     \includegraphics[width=0.45\textwidth]{2-bifurcation-experiment}
@@ -165,6 +195,7 @@ It lays the foundation for realizing networks that can achieve active matter log
     \label{fig:bifurcation-symmetric}
 \end{figure*}
 
+\section{Results}
 
 \begin{figure*}[!h]
     \includegraphics[width=\textwidth]{4-straight-channel-length}
@@ -213,7 +244,7 @@ It lays the foundation for realizing networks that can achieve active matter log
     \label{fig:angle-ratchet-competition}
 \end{figure*}
 
-% \bibliography{ref}
+\bibliography{ref}
 
 
 
