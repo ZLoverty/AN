@@ -115,34 +115,37 @@ The resutls lay the foundation for realizing networks that can achieve active ma
 
 \section{Introduction}
 
-% Protein based microfilaments are important consitituents of cell cytoskeleton. They are responsible for active mass transport, stress resistance and tissue contraction. (refer to Caspi 2000)
-% Microtubule kinesin mixture is a premier example of active fluids, which are powered by numerous energy sources at microscale.
-% 
+Active matter shows complex interactions with boundaries, such as accumulation at corners, upstream swimming, spontaneous flow in channels and flow ractification in asymmetric structures (see review \cite{Bechinger2016} and references therein).
+Therefore, boundaries are a powerful tool to manipulate active matter behavior.
+Examples of using boundary effects to manipulate active matter include guiding the self-organization of bacteria in a circular well \cite{Lushi2014, Wioland2016}, directed cargo transport \cite{Ghosh2020} and tuning the mechanical properties of active fluids \cite{Saintillan2018, Liu2019}.
 
-Active fluids flow spontaneously under channel confinement, a phenomenon observed in various active matter systems \cite{Lushi2014,Wioland2016,Wu2017,Duclos2017,Morin2018,Hardouin2020} followed by a theoretical prediction \cite{Voituriez2005}.
-Without addressing the detailed mechanisms that govern the magnitude of the spontaneous flow, \citet{Woodhouse2017} proposed to use a Landau-type bistable potential to model the phenomenon. Combining some other ingredients, such as incompressibility and diode channel, they derived rich and interesting behaviors of active flow networks (AFN), including active matter logic \cite{Woodhouse2016,Woodhouse2017}.
+Spontaneous flow under channel confinement is a phenomenon observed in various active matter systems \cite{Lushi2014,Wioland2016,Wu2017,Duclos2017,Morin2018,Hardouin2020}.
+Due to its ubiquitous and robustness, active matter holds significant potential for many applications, especially in the fields of microfluidics and soft robotics \cite{}.
+Among the various proposed applications, active flow networks (AFN) are particularly interesting \cite{Woodhouse2016,Woodhouse2017}.
+AFNs are networks of channels where active matter flows.
+The most notable feature of AFNs is the potential capability of achieving logical operations, such as AND and OR, which enables the combination of mass transport and intelligence in a single system. 
+Without addressing the detailed mechanisms governing the spontaneous active matter flow, \citet{Woodhouse2017} proposed to use a Landau-type bistable potential to model the phenomenon. 
+Combining some other ingredients, such as incompressibility and diode channel, they derived a theoretical framework of AFNs that can achieve logical operations.
 
-Networks are topologically more complex than channels. 
-The most notable feature is nodes connecting more than two channels, in particular odd number of channels. 
-According to the model by \citet{Woodhouse2017} and the experiment by \citet{Morin2018}, all channels have a preferred flow rate $\phi_0$, given the same channel width and activity.
-However, when three channels are connected to one node, imcompressibility frustrates the flow state where flow rates in all the channels are $\phi_0$.
-In such a frustrated state, the model by \citet{Woodhouse2017} predicts that the most favorable flow state is that the flow enters the node at flow rate $\phi_0$ from one channel and exits at the same flow rate $\phi_0$ through another channel, leaving the flow rate in the third channel $0$.
+A key feature of AFNs is the bifurcation, where a channel splits into two or more channels. 
+According to the model by \citet{Woodhouse2017} and the experiment by \citet{Morin2018}, active matter flow in channels have a preferred flow rate $\phi_0$, which depends only on channel width and activity, as illustrated in Figs.~\ref{fig:bifurcation-question} (a) and (b).
+Such a preferred flow rate can be modeled by a Landau-type bistable potential, as shown in Fig.~\ref{fig:bifurcation-question} (c).
+When three channels of identical width are connected to one node, i.e. at a bifurcation (as in Fig.~\ref{fig:bifurcation-question}(d)), mass conservation frustrates the flow state where flow rates in all the channels are $\phi_0$.
+In such a frustrated state, the model by \citet{Woodhouse2017} predicts that the most favorable flow state is that the flow enters the node at flow rate $\phi_0$ from one channel and exits at the same flow rate $\phi_0$ through another channel, leaving the flow rate in the third channel $0$ (Fig.~\ref{fig:bifurcation-question}(e)).
 Furthermore, if the two outlet channels are of different lengths, the exit flow follows the longer path.  
 This behavior is the fundation to achieve logical operation with active matter confined in channel networks. 
 
-We find it interesting to realize active flow networks in experiment. 
+Despite the theoretical progress and the interesting promise of AFNs, experimental realization of AFNs is very rare due to the technical challenges in fabricating and properly applying the confinement structure to active matter.
+
 First, this realization provides a playground to test and improve existing theories, and thus deepen our understanding of active matter behavior in complex environment. 
 Second, this realization lays the foundation for potential applications of active flow networks in mass transport and flow computation. 
-However, experimental realization of AFN is very rare due to the technical challenges in fabricating and properly applying the confinement structure to active matter.
-In particular, the networks are open in 2D, which requires 3D confinement structure, making traditional photolithography technique challenging.
 
 In this work, we take advantage of a two-photon polymerization based high-precision 3D printing to fabricate open network structures (see Fig.~\ref{fig:bifurcation-experiment}b). 
-We use microtubule-kinesin system as the model active matter to experimentally test all the ingredients in the theory of AFN, namely bistable potential, incompressibility and diode channel. 
-Then, we use these ingredients to predict and understand more complicated bifurcation experiments.
-Our results suggest that ratchets and turning angles help establish unambiguous polarized flow states.
-In contrast, channel length is a less relevant factor, which results in more frequently changing flow states.
-Our experiment is the first step to study active matter behavior in complex channel networks in the simplest form.
-The resutls lay the foundation for realizing networks that can achieve active matter logic and computation.
+We use microtubule-kinesin system as the model active matter to experimentally test the behavior of active matter at bifurcations.
+We then introduce additional control elements, namely ratchet and angle, in an attempt to realize the diode channel envisioned in the theoretical framework, and to further steer the flow in the desired direction.
+Finally, we come up with a set of laws that govern the flow behavior at bifurcations, which can be used to design more complex channel networks.
+Our experiment is the first step to study active matter behavior in complex channel networks.
+It not only provides a playground to test and improve existing theories, and thus deepen our understanding of active matter behavior in complex environment, but also lays the foundation for potential applications of active flow networks in mass transport and flow computation. 
 
 \begin{figure}[!h]
     \includegraphics[width=0.45\textwidth]{1-bifurcation-question}
@@ -161,6 +164,9 @@ The resutls lay the foundation for realizing networks that can achieve active ma
 \end{figure}
 
 \section{Experiment}
+We use the microtubule-kinesin mixture as the model active matter system. 
+The microtubule-kinesin system is a well-established model system for active nematics \cite{Sanchez2012,Keber2014,Decamp2015,Hardouin2020}.
+In our experiment, 
 
 \begin{figure}[!h]
     \includegraphics[width=0.45\textwidth]{2-bifurcation-experiment}
