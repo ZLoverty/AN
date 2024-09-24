@@ -109,12 +109,12 @@ Therefore, boundaries are a powerful tool to manipulate active matter behavior.
 Examples of using boundary effects to manipulate active matter include guiding the self-organization of bacteria in a circular well \cite{Lushi2014, Wioland2016}, directed cargo transport \cite{Ghosh2020} and tuning the mechanical properties of active fluids \cite{Saintillan2018, Liu2019}.
 
 Spontaneous flow under channel confinement is a phenomenon observed in various active matter systems \cite{Lushi2014,Wioland2016,Wu2017,Duclos2017,Morin2018,Hardouin2020}.
-Due to its ubiquitous and robustness, active matter holds significant potential for many applications, especially in the fields of microfluidics and soft robotics \cite{}.
+Due to its ubiquitous and robustness, active matter holds significant potential for many applications, especially in the fields of microfluidics and soft robotics \cite{Hardouin2020,}.
 Among the various proposed applications, active flow networks (AFN) are particularly interesting \cite{Woodhouse2016,Woodhouse2017}.
 AFNs are networks of channels where active matter flows.
-The most notable feature of AFNs is the potential capability of achieving logical operations, such as AND and OR, which enables the combination of mass transport and intelligence in a single system. 
-Without addressing the detailed mechanisms governing the spontaneous active matter flow, \citet{Woodhouse2017} proposed to use a Landau-type bistable potential to model the phenomenon. 
-Combining some other ingredients, such as incompressibility and diode channel, they derived a theoretical framework of AFNs that can achieve logical operations.
+The most notable feature of AFNs is the potential capability of achieving logical operations, such as AND and OR, which enables the combination of mass transport and intelligence in a single circuit system. 
+\citet{Woodhouse2017} proposed to use a Landau-type bistable potential to model the phenomenon. 
+Combining mass conservation and diode channel which only permits flow in certain direction, they derived a theoretical framework of AFNs that can achieve logical operations.
 
 \begin{figure}[!h]
     \includegraphics[width=0.45\textwidth]{1-bifurcation-question}
@@ -135,8 +135,11 @@ Combining some other ingredients, such as incompressibility and diode channel, t
 A key feature of AFNs is the bifurcation, where a channel splits into two or more channels. 
 According to the model by \citet{Woodhouse2017} and the experiment by \citet{Morin2018}, active matter flow in channels have a preferred flow rate $\phi_0$, which depends only on channel width and activity, as illustrated in Figs.~\ref{fig:bifurcation-question} (a) and (b).
 Such a preferred flow rate can be modeled by a Landau-type bistable potential, as shown in Fig.~\ref{fig:bifurcation-question} (c).
-When three channels of identical width are connected to one node, i.e. at a bifurcation (as in Fig.~\ref{fig:bifurcation-question}(d)), mass conservation frustrates the flow state where flow rates in all the channels are $\phi_0$.
-In such a frustrated state, the model by \citet{Woodhouse2017} predicts that the most favorable flow state is that the flow enters the node at flow rate $\phi_0$ from one channel and exits at the same flow rate $\phi_0$ through another channel, leaving the flow rate in the third channel $0$ (Fig.~\ref{fig:bifurcation-question}(e)).
+When three channels of identical width are connected to one node, i.e. at a bifurcation (as in Fig.~\ref{fig:bifurcation-question}(d)), however, the all-$\phi_0$ flow state is frustrated by mass conservation.
+In such a frustrated state, the model by \citet{Woodhouse2017} predicts that the most favorable flow state is that the flow enters the node at flow rate $\phi_0$ from one channel and exits at the same flow rate $\phi_0$ through another channel, leaving the flow rate in the third channel $0$.
+Figure~\ref{fig:bifurcation-question}(e) shows the predicted flow state histogram.
+Each point in this histogram represents a flow configuration represented by flow rates in channel B $\phi_B$ and channel C $\phi_C$, and the flow rate in channels A satisfies $\phi_A+\phi_B+\phi_C=0$.
+The blue dot represents one of the six most probable flow state, where the flow enters the node from channel A and exits through channel B, without splitting into channel C.
 Furthermore, if the two outlet channels are of different lengths, the exit flow follows the longer path.  
 This behavior is the fundation to achieve logical operation with active matter confined in channel networks. 
 
@@ -179,14 +182,14 @@ Active nematics are typically prepared at water-oil interface, as illustrated in
 The ``grid'' of channels are printed using a high resolution 3D printer (Nanoscribe Photonic Professional GT2).
 Figure~\ref{fig:bifurcation-experiment}(b) shows the design of a typical bifurcation channels.
 The bottom layer of the printed structure is a Y-shape channel, while the top layer is a set of ``bridges'' that hold the structure together.
-The middle layer is a set of spacers that separate the top and bottom layers, which prevents the active nematics from being affected by the bridges in the top layer.
+The middle layer is a set of spacers that separate the top and bottom layers, which keeps the bridges at a safe distance from the active nematics system.
 Figure~\ref{fig:bifurcation-experiment}(c) shows a top view of the bifurcation channels.
-All the three channels are of the same width $w=100$ $\mu$m, while the length of the channels are $l=1000$ $\mu$m.
+All the three channels are of the same width $w=100\,\mu$m, while the length of the channels are $l=1000\,\mu$m.
 An unperturbed active nematics system is shown in Fig.~\ref{fig:bifurcation-experiment}(d), while the same system with the bifurcation channels set in is shown in Fig.~\ref{fig:bifurcation-experiment}(e).
 
 The active nematics system is observed using a confocal microscope (Nikon), and images are taken at 2 Hz using a 10X objective lens.
 In a typical image, the field of view covers a part of all the bifurcation channels.
-Then, 400 $\mu$m of each channel is cropped and analyzed by PIV, as shown in Fig.~\ref{fig:bifurcation-symmetric}(a).
+Then, \SI{400}{\micro\meter} of each channel is cropped and analyzed by PIV, as shown in Fig.~\ref{fig:bifurcation-symmetric}(a).
 
 \section{Results}
 
@@ -289,7 +292,7 @@ The flow again splits with a 1:1 ratio, confirming the dominant role of ratchet 
     \label{fig:ratchet-dominance}
 \end{figure*}
 
-\begin{figure*}[!h]
+\begin{figure*}[!ht]
     \includegraphics[width=\textwidth]{6-angle-ratchet-competition}
     \caption{
     \textbf{The role of turning angles.}
