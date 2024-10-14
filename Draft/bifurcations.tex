@@ -157,16 +157,12 @@ While a few early works have hinted or employed asymmetric geometries, such as a
 In this work, we filled this gap by experimentally studying the flow behavior of active matter at channel networks consisting of asymmetric channels. 
 To obtain a clear understanding, we studied the simplest possible form of a channel network -- the bifurcation -- where a channel splits into two at a node.
 Despite of being simple, the bifurcation is a key element of more complex channel networks, and a great system to study frustrated flow states.
-
-
-
-We use microtubule-kinesin system as the model active matter to experimentally test the behavior of active matter at bifurcations.
-We then introduce additional control elements, namely ratchet and angle, in an attempt to realize the diode channel envisioned in the theoretical framework, and to further steer the flow in the desired direction.
-Finally, we come up with a set of laws that govern the flow behavior at bifurcations, which can be used to design more complex channel networks.
-Our experiment is the first step to study active matter behavior in complex channel networks.
-It not only provides a playground to test and improve existing theories, and thus deepen our understanding of active matter behavior in complex environment, but also lays the foundation for potential applications of active flow networks in mass transport and flow computation. 
-
-
+Assymetry are in two levels: in single channel level, ratchets are introduced to favor the flow in a certain direction; in network level, input channels are designed to split into channels with different lengths, number of ratchets and turning angles.
+Our results suggest that ratchets and turning angles help establish stable polarized flow states, where the inlet flow primarily goes into one of the outlet channels, leaving the other channel with little flow.
+In contrast, channel length is a less relevant factor, which results in more frequently changing flow states.
+\textcolor{red}{Topological defects show different dynamics are different in flowing ratchet channels from frustrated straight channels, uncovering the steering mechanism of the ratchets.}
+Our experiment is the first step to understanding active nematic flows in complex channel networks.
+The result lays the foundation for potential applications of active flow networks in mass transport and flow computation. 
 
 \section{Experiment}
 
@@ -174,73 +170,87 @@ It not only provides a playground to test and improve existing theories, and thu
     \includegraphics[width=0.45\textwidth]{2-bifurcation-experiment}
     \caption{
     \textbf{Confining microtubule-kinesin system at water-oil inerface -- the experimental setup.}
-    (a) A schematic diagram of the experimental setup. 
-    The microtubule-kinesin active nematic system is condensed at the water-oil interface, and is subject to lateral confinement by nano-printed channels. 
-    (b) A schematic diagram of the bifurcation channels. 
-    The Y-shape channel pattern is printed at the bottom.
-    The ``bridges'' on the top are designed to hold the structure together. 
-    (c) Top view of the bifurcation channels. 
-    The relevant dimensions channel length $l=1000$ $\mu$m and channel width $w=100$ $\mu$m are labeled in place. 
-    (d) A confocal image of a mature interfacial microtubule-kinesin system. 
-    (e) A confocal image of the bifurcation channels set on the interfacial microtubule-kinesin system. 
+    (a) Schematic diagram of the experimental setup. The microtubule-kinesin active nematic system is placed at an water-oil interface in a custom PDMS pool, and is subject to lateral confinement by the micro-printed bifurcation channel. 
+    (b) Confocal image of a mature interfacial microtubule-kinesin system. 
+    (c) Confocal image of the bifurcation channels set on the interfacial microtubule-kinesin system. 
     }
     \label{fig:bifurcation-experiment}
 \end{figure}
 
-We use the microtubule-kinesin mixture as the model active matter system. 
-The microtubule-kinesin system is a well-established model system for active nematics \cite{Sanchez2012,Keber2014,Decamp2015,Hardouin2020}.
-Active nematics are typically prepared at water-oil interface, as illustrated in Fig.~\ref{fig:bifurcation-experiment}(a). 
-The ``grid'' of channels are printed using a high resolution 3D printer (Nanoscribe Photonic Professional GT2).
-Figure~\ref{fig:bifurcation-experiment}(b) shows the design of a typical bifurcation channels.
-The bottom layer of the printed structure is a Y-shape channel, while the top layer is a set of ``bridges'' that hold the structure together.
-The middle layer is a set of spacers that separate the top and bottom layers, which keeps the bridges at a safe distance from the active nematics system.
-Figure~\ref{fig:bifurcation-experiment}(c) shows a top view of the bifurcation channels.
-All the three channels are of the same width $w=100\,\mu$m, while the length of the channels are $l=1000\,\mu$m.
-An unperturbed active nematics system is shown in Fig.~\ref{fig:bifurcation-experiment}(d), while the same system with the bifurcation channels set in is shown in Fig.~\ref{fig:bifurcation-experiment}(e).
-
+Our active matter system comprises microtubule filaments powered by ATP-consuming two-headed kinesin molecular motors \cite{Sanchez2012}. 
+By adding depleting agent poly (ethylene glycol) (PEG), the system forms dense bundles at the water-oil interface.
+Driven by the kinesin motors, the bundles stretch and bend constantly, exhibiting chaotic flows characterized by the formation and annihilation of topological defects.
+In an experiment, \SI{2.5}{\micro\liter} of microtubule solution was put in a custom pool of \SI{5}{\milli\meter} diameter, covered by \SI{100}{\micro\liter} of silicone oil (5 cSt).
+The micro-printed bifurcation channel structure was then gently placed at the oil-water interface, confining the chaotic system into channel flows (Fig.~\ref{fig:bifurcation-experiment}(a)). 
+An unconfined active nematics system is shown in Fig.~\ref{fig:bifurcation-experiment}(b), while the same system confined by the bifurcation channels is shown in Fig.~\ref{fig:bifurcation-experiment}(c).
 The active nematics system is observed using a confocal microscope (Nikon), and images are taken at 2 Hz using a 10X objective lens.
-In a typical image, the field of view covers a part of all the bifurcation channels.
 Then, \SI{400}{\micro\meter} of each channel is cropped and analyzed by PIV, as shown in Fig.~\ref{fig:bifurcation-symmetric}(a).
 
 \section{Results}
 
-\subsection{Symmetric bifurcation}
-
-We first study the flow behavior at a symmetric bifurcation, where all the channels are of the same length.
-The flow rates in the channels are plotted in Fig.\ref{fig:bifurcation-symmetric}(b).
-The blue, orange and green curves represent the flow rates in channels A, B and C, respectively, corresponding to the colors of the borders in Fig.\ref{fig:bifurcation-symmetric}(a).
-The light and thin curves in the back are the real flow rates, while the strong and thick curves in the front are Gaussian-smoothed flow rates with $\sigma=25$ s.
-The gray curve is the sum of the flow rates in the 3 channels, which is used to verify the continuity at the junction.
-Due to the variation of active nematics activity, the flow rates fluctuates in time. 
-To normalize the flow rates of different magnitudes, we define a normalizer as the maximum of the smoothed absoluted flow rates in A, B and C, as indicated by the red curve. 
-By dividing the flow rates by the normalizer, we obtain the normalized flow rates, which are used to construct the flow rate histogram.
-In Fig.\ref{fig:bifurcation-symmetric}(c), we show the histogram of the normalized flow rates.
-Instead of having a few sharp peaks, which was expected from the theoretical model \cite{Woodhouse2017}, the histogram shows a broad and even distribution of flow rates, covering most of the possible configurations of flow rates in the 3 channels for $\phi_A<0$.
-Although the channels are designed to be fully symmetric, the grid requires a base structure to which the micromanipulator is attached, which may introduce some asymmetry in the flow rates.
-Note that the flow rates in the 3 channels satisfy $\phi_A+\phi_B+\phi_C = 0$, so the histograms are not independent.
-Therefore, in the following figures, we only show the $\phi_B$-$\phi_C$ histogram.
-
-\begin{figure*}[!h]
-    \includegraphics[width=\textwidth]{3-bifurcation-symmetric}
+\begin{figure}[htb]
+    \includegraphics[width=.45\textwidth]{3-bifurcation-symmetric}
     \caption{
     \textbf{Flow rate measurements and flow rate histogram.}
     (a) A snapshot of microtubule-kinesin system confined in bifurcation channels.
-    The scale bar is 200 $\mu$m.
-    The 3 panels on the right are crops of each channel with corresponding border colors. 
-    The yellow arrows are the results from PIV analysis. 
-    (b) Flow rate time series in the 3 channels A (blue), B (orange) and C (green). 
-    The light and thin curves in the back are the real flow rates, while the strong and thick curves in the front are Gaussian-smoothed flow rates with $\sigma=25$ s. 
-    The red curve is the ``normalizer'', defined as the maximum of the   smoothed absoluted flow rates in A, B and C. 
-    The gray curve is the sum of the flow rates in the 3 channels, which is used to verify the continuity at the junction.
-    The unit of flow rate is $\mu$m$^2$/s.
-    Note that the direction away from the junction is defined as the positive direction. 
-    (c) The histogram of normalized flow rates. From left to right $\phi_A$-$\phi_B$, $\phi_A$-$\phi_C$ and $\phi_B$-$\phi_C$. Note that these histograms are not independent since the 3 flow rates satisfy $\phi_A+\phi_B+\phi_C = 0$. Therefore, in the following, we only show $\phi_B$-$\phi_C$ histogram.
-    \textcolor{red}{Down size this figure and the figures in the following. No need to show flow rate time series. Labels can be relaxed.}
+    The scale bar is 200 $\mu$m. The rectangles indicate the regions where PIV analysis was performed.
+    (b) Zoom-in view of channel A, yellow arrows indicates local velocity from PIV analysis. 
+    (c) Flow rate time series in the 3 channels A (blue), B (orange) and C (green). 
+    The light curves in the back are the real flow rates, while the bold curves in the front are Gaussian-smoothed flow rates with $\sigma=25$ s. The ``normalizer'' and the sum of all flow rates are shown as red and gray, respectively. 
+    (d) Raw, (e) normalized and (f) theoretical flow rate histogram of channel B and C. 
     }
     \label{fig:bifurcation-symmetric}
-\end{figure*}
+\end{figure}
 
-\subsection{Straight channel length}
+\subsection{Symmetric bifurcation}
+
+We first studied the flow behavior at a symmetric bifurcation, where all the channels are smooth and of the same length.
+To extract the flow rate in each channel, we cropped regions \SI{400}{\micro\meter} from the connecting node for each channel and performed Particle Image Velocimetry (PIV) analysis (as indicated by the rectangles in Fig.~\ref{fig:bifurcation-symmetric}(a)).
+Snapshots of the PIV results are shown in Fig.~\ref{fig:bifurcation-symmetric}(b).
+Local velocity vectors $v(x,y)$ are indicated as yellow arrows, where $x$ and $y$ are defined separately as the transverse and parallel directions for each channel, respectively.
+
+The surface flow rate in the channel direction ($Q_y$) was calculated by integrating the velocity field over the channel cross-section.
+To minimize the noise in data, we also average the flow rate calculated at different $y$ positions.
+Formally, our channel flow rate is defined as
+%
+\begin{equation}
+    \phi = \left< Q_y \right> = \frac{1}{L}\int_0^{L} Q_y dy,
+\end{equation}
+%
+where $Q_y=\int_{x_1}^{x_2} v_y(x, y)dx$ is the flow rate at $y$ position, $L$ is the length of the cropped image, and $x_1$ and $x_2$ are the left and right boundaries of the channel, respectively.
+For consistency, we always define positive flow rate as the flow away from the connecting node.
+With this definition, the mass conservation at the connecting node can be expressed as $\phi_A+\phi_B+\phi_C=0$.
+
+The flow rates in channels A, B and C over time are plotted in Fig.~\ref{fig:bifurcation-symmetric}(c) in blue, orange and green curves, respectively, corresponding to the colors of the rectangles in Fig.~\ref{fig:bifurcation-symmetric}(a).
+The light curves in the back are the real flow rates, while the bold curves in the front are Gaussian-smoothed flow rates with $\sigma=25$ s.
+The gray curve is the sum of the flow rates in the 3 channels, $\phi_A+\phi_B+\phi_C$, which serves as a check for mass conservation.
+The magnitude of the gray curve is much smaller than the flow rates in the 3 channels, indicating that mass conservation is indeed satified at the connecting node.
+Figures~\ref{fig:bifurcation-symmetric}(d) show the histograms of raw flow rates in channels B and C.
+Darker colors indicate higher probability of flow rate configurations, and the crossing points of the dashed lines are the origin of the histogram ($\phi_B=\phi_C=0$).
+We only show the histogram of the flow rates in channels B and C, because the flow rates are constrained by $\phi_A+\phi_B+\phi_C=0$, meaning that two flow rates are enough to specify the flow configuration.
+Since we were interested in the flow configurations, that is, how a flow in one channel was distributed in the other two channels, we focused on the normalized flow rates $\tilde\phi_A$, $\tilde\phi_B$ and $\tilde\phi_C$.
+This eliminated the effect of the fluctuating overall flow rates (for detailed normalization procedure, see Supplemental Information).
+The normalized flow rate histograms are shown in Fig.~\ref{fig:bifurcation-symmetric}(e).
+Flow configurations that conserve mass is indicated by elliptic hexagons in dotted lines.
+The normalized flow rate histogram show good agreement with the mass conservation line, which is reassuring for our experimental and analytical techniques.
+It is possible to obtain the theoretical flow rate histogram by solving the Landau-type model proposed by \citet{Woodhouse2017}.
+In short, the model states that the flow in a channel network tends to minimize the total energy of the system, which comprises channel flow energy, diode energy and mass conservation energy.
+Formally, the Hamiltonian of the system to be minimized is
+%
+\begin{equation}
+    H = H_{\mathrm{channel}} + H_{\mathrm{diode}} + H_{\mathrm{mass}},
+\end{equation}
+%
+the detailed form of the Hamiltonian can be found in the original paper \cite{Woodhouse2017} and Supplemental Information.
+By simulating the flow configurations in a Monte Carlo process, we obtained a theoretical flow rate histogram, as shown in Fig.~\ref{fig:bifurcation-symmetric}(f).
+Compared to the theoretical flow rate histogram in Fig.~\ref{fig:bifurcation-symmetric}(f), the experimental histogram shows a broader distribution, covering most of the possible configurations of flow rates in the 3 channels.
+Sharp peaks at polarized flow configurations, where one of the channels is a completely frustrated, however, were not observed in our experiment. 
+It is worth noting that although the channels were designed to be fully symmetric, the grid requires a base structure to which the micromanipulator is attached (see Fig.~\ref{fig:bifurcation-experiment}(c)), which may result in assymetry in the flow rates.
+This is probably the reason why we did not observe all the flow configurations that satisfy mass conservation, especially those where $\tilde\phi_A=1$.
+
+\subsection{Assymetry in channel length}
+
+To test the 
 
 Having learned from the fully symmetric bifurcation experiment, we enforce channel A as a ratchet channel, which guarantees that $\phi_A<0$.
 We then study the effect of channel length on the flow behavior.
