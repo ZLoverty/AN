@@ -60,7 +60,7 @@ This mini-app generates 3 types of data (output):
 
 We used to rotate the image before cropping the channel region. This sometimes lead to a loss of information, see the rotation animation below:
 
-![picture 2](/assets/images/2023/03/rotate-image.gif1)
+![picture 2](/assets/images/2023/03/rotate-image.gif)
 
 In the rotated image, I set the cropping region to the upper edge, but that cropping region does not cover all the useful image information. A more reasonable choice of cropping region is indicated by the red dashed line.
 
