@@ -46,6 +46,8 @@ twocolumn,
 \usepackage{dcolumn}% Align table columns on decimal point
 % \usepackage{bm}% bold math
 \usepackage{xcolor}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
 \usepackage{hyperref}% add hypertext capabilities
 \usepackage{siunitx}% SI units
 \usepackage{physics}
@@ -160,7 +162,7 @@ Despite of being simple, the bifurcation is a key element of more complex channe
 Assymetry are in two levels: in single channel level, ratchets are introduced to favor the flow in a certain direction; in network level, input channels are designed to split into channels with different lengths, number of ratchets and turning angles.
 Our results suggest that ratchets and turning angles help establish stable polarized flow states, where the inlet flow primarily goes into one of the outlet channels, leaving the other channel with little flow.
 In contrast, channel length is a less relevant factor, which results in more frequently changing flow states.
-\textcolor{red}{Topological defects show different dynamics are different in flowing ratchet channels from frustrated straight channels, uncovering the steering mechanism of the ratchets.}
+\red{The topological defects show different dynamics in flowing ratchet channels from frustrated straight channels, uncovering the steering mechanism of the ratchets.}
 Our experiment is the first step to understanding active nematic flows in complex channel networks.
 The result lays the foundation for potential applications of active flow networks in mass transport and flow computation. 
 
@@ -178,7 +180,7 @@ The result lays the foundation for potential applications of active flow network
 \end{figure}
 
 Our active matter system comprises microtubule filaments powered by ATP-consuming two-headed kinesin molecular motors \cite{Sanchez2012}. 
-By adding depleting agent poly (ethylene glycol) (PEG), the system forms dense bundles at the water-oil interface.
+By adding depleting agent poly ethylene glycol (PEG), the system forms dense bundles at the water-oil interface.
 Driven by the kinesin motors, the bundles stretch and bend constantly, exhibiting chaotic flows characterized by the formation and annihilation of topological defects.
 In an experiment, \SI{2.5}{\micro\liter} of microtubule solution was put in a custom pool of \SI{5}{\milli\meter} diameter, covered by \SI{100}{\micro\liter} of silicone oil (5 cSt).
 The micro-printed bifurcation channel structure was then gently placed at the oil-water interface, confining the chaotic system into channel flows (Fig.~\ref{fig:bifurcation-experiment}(a)). 
@@ -196,8 +198,8 @@ Then, \SI{400}{\micro\meter} of each channel is cropped and analyzed by PIV, as 
     The scale bar is 200 $\mu$m. The rectangles indicate the regions where PIV analysis was performed.
     (b) Zoom-in view of channel A, yellow arrows indicates local velocity from PIV analysis. 
     (c) Flow rate time series in the 3 channels A (blue), B (orange) and C (green). 
-    The light curves in the back are the real flow rates, while the bold curves in the front are Gaussian-smoothed flow rates with $\sigma=25$ s. The ``normalizer'' and the sum of all flow rates are shown as red and gray, respectively. 
-    (d) Raw, (e) normalized and (f) theoretical flow rate histogram of channel B and C. 
+    The light curves in the back are the real flow rates, while the bold curves in the front are Gaussian-smoothed flow rates with $\sigma=50\;\mathrm{s}$. The ``normalizer'' and the sum of all flow rates are shown as red and gray, respectively. 
+    (d-f) Raw, normalized and theoretical flow rate histograms of channels B (vertical) and C (horizontal). 
     }
     \label{fig:bifurcation-symmetric}
 \end{figure}
@@ -241,92 +243,95 @@ Formally, the Hamiltonian of the system to be minimized is
     H = H_{\mathrm{channel}} + H_{\mathrm{diode}} + H_{\mathrm{mass}},
 \end{equation}
 %
-the detailed form of the Hamiltonian can be found in the original paper \cite{Woodhouse2017} and Supplemental Information.
+the detailed form of the Hamiltonian can be found in the original paper \cite{Woodhouse2017} and \red{Supplemental Information}.
 By simulating the flow configurations in a Monte Carlo process, we obtained a theoretical flow rate histogram, as shown in Fig.~\ref{fig:bifurcation-symmetric}(f).
 Compared to the theoretical flow rate histogram in Fig.~\ref{fig:bifurcation-symmetric}(f), the experimental histogram shows a broader distribution, covering most of the possible configurations of flow rates in the 3 channels.
 Sharp peaks at polarized flow configurations, where one of the channels is a completely frustrated, however, were not observed in our experiment. 
-It is worth noting that although the channels were designed to be fully symmetric, the grid requires a base structure to which the micromanipulator is attached (see Fig.~\ref{fig:bifurcation-experiment}(c)), which may result in assymetry in the flow rates.
-This is probably the reason why we did not observe all the flow configurations that satisfy mass conservation, especially those where $\tilde\phi_A=1$.
+It is worth noting that although the channels were designed to be fully symmetric, the grid requires a base structure to which the micromanipulator is attached (see Fig.~\ref{fig:bifurcation-experiment}(c)), which may result in asymmetry in the flow rates.
+This is probably the reason why we did not observe all the flow configurations that satisfy mass conservation, especially those where the flow in channel A goes outwards ($\phi_A> 0$).
 
-\subsection{Assymetry in channel length}
+\subsection{Asymmetry in channel length}
 
-To test the 
-
-Having learned from the fully symmetric bifurcation experiment, we enforce channel A as a ratchet channel, which guarantees that $\phi_A<0$.
-We then study the effect of channel length on the flow behavior.
-In Fig.\ref{fig:straight-channel-length}(a), we show the flow behavior at a 9-teeth ratchet inlet with 2 equal length outlets.
-The flow fluctuates between polarized and non-polarized states, exploring all the possible configurations.
-The equal splitting state is the most probable configuration.
-It is also noticed that channels B and C are always outlets when fixing A as the inlet with ratchets.
-This observation implies that the ratchet channel has a dominant effect on the flow behavior, compared to the straight channels.
-Such dominance will be further confirmed in the following experiments.
-In Fig.\ref{fig:straight-channel-length}(b), we show the flow behavior at a 4-teeth ratchet inlet with long and short outlets.
-The expectation from theory is that the flow will prefer the longer outlet, as the longer path has a lower energy state and is therefore more energetically favorable.
-However, we observe that the flow explores all the possible configurations, showing no preferred splitting ratio.
-In Fig.\ref{fig:straight-channel-length}(c), we show the flow behavior at a 4-teeth ratchet inlet with 2 equal length outlets.
-This experiment is done to keep consistent ratchet numbers in the inlet to avoid the potential effect of ratchet number on the flow behavior.
-The resulting flow configuration is very similar to the longer ratchet inlet one though: the flow fluctuates between polarized and non-polarized states, exploring all the possible configurations.
-
-\begin{figure*}[!h]
-    \includegraphics[width=\textwidth]{4-straight-channel-length}
+\begin{figure}[t]
+    \includegraphics[width=.45\textwidth]{bifurcation-asymmetric.pdf}
     \caption{
-    \textbf{Ratchet inlet and straight outlets: histogram and time series.}
-    (a) 9-teeth ratchet inlet with 2 equal length outlets. 
-    The flow fluctuates between polarized and non-polarized states, exploring all the possible configurations.
-    The equal splitting state is the most probable configuration.
-    (b) 4-teeth ratchet inlet with long and short outlets.
-    The flow also explores all the possible configurations, but shows no preferred splitting ratio.
-    (c) 4-teeth ratchet inlet with 2 equal length outlets.
-    The flow fluctuates between polarized and non-polarized states, exploring all the possible configurations.
-    The equal splitting state is the most probable configuration.
+    \textbf{Straight channel length effect.}
+    (a) A confocal fluorescence image of a bifurcation channel system with a 4-teeth ratchet inlet channel A and two straight outlet channels B and C with different lengths. The mean width of all channels is $150\;\mathrm{\mu m}$. 
+    (b) A schematic diagram of the bifurcation channel system. The lengths of channel B is $1500\;\mathrm{\mu m}$ and the lengths of channels A and C are both $500\;\mathrm{\mu m}$.
+    (c) The time series of flow rates in all channels. The normalizer and the sum of all flow rates are shown as red and gray, respectively. 
+    (d) The flow rate histogram of channels B (vertical) and C (horizontal). The limits of the histogram are set to $[-2000, 2000]$ for both axes.
+    (e) The normalized flow rate histogram. The limits of the histogram are set to $[-2, 2]$ for both axes. The hexagon in dotted lines indicates the configurations that conserve mass.
+    (f) The theoretical flow rate histogram. 
     }
-    \label{fig:straight-channel-length}
-\end{figure*}
+    \label{fig:bifurcation-asymmetric}
+\end{figure}
+
+Channel length plays a crucial role in determining the flow behavior in channel networks, according to the theoretical model by \citet{Woodhouse2017}.
+Longer channels have a deeper energy well, which favors the flow to follow the longer path.
+To test this hypothesis, we designed a bifurcation channel system with two outlet channels of different lengths, as shown in Fig.~\ref{fig:bifurcation-asymmetric}(a) and sketched in Fig.~\ref{fig:bifurcation-asymmetric}(b).
+Channel A is modified with ratchets to ensure that channel A is always the inlet channel. 
+Channel B is \SI{1500}{\micro\meter} long, while channels A and C are both \SI{500}{\micro\meter} long.
+All the channels have the same mean width of \SI{150}{\micro\meter}.
+The flow rates in the 3 channels are shown in Fig.~\ref{fig:bifurcation-asymmetric}(c).
+The ratchet structure is effective in polarizing the flow, as the flow rate in channel A is always negative, meaning that the flow is always directed towards the center node. 
+At the bifurcation, neither of the outlet channels is apparently preferred.
+Instead, the flow splits almost equally between the two outlet channels.
+The shorter channel, C, has a slightly higher flow rate than the longer channel, B.
+This flow configuration is visualized in the raw and normalized flow rate histogram in Fig.~\ref{fig:bifurcation-asymmetric}(d) and (e), respectively.
+The prediction from the theoretical model is shown in Fig.~\ref{fig:bifurcation-asymmetric}(f), where a sharp peak is observed at the polarized flow configuration, showing a sharp contrast to the experimental result. 
+This result shows that the longer path is not necessarily preferred.
 
 \subsection{Ratchet inlet and outlets}
 
-We then study the flow configurations of active nematics in bifurcation channels with ratchet inlets and outlets.
-The experimental results are shown in Fig.\ref{fig:ratchet-dominance}.
-A general observation is that the peaks in the histograms are sharp, indicating that the flow configurations are more deterministic than in straight channels.
-When the outlet channels have different numbers of ratchet, as shown in Fig.~\ref{fig:ratchet-dominance}(a) the flow robustly splits into different fractions in the two outlet channels.
-Interestingly, the flow rate ratio in the two outlet channels is almost equal to the ratio between the number of ratchet teeth.
-Does this unequal splitting of flow arise from the difference in the length of the channels?
-To answer this question, we keep the channels lengths unchanged, but modify the number of ratchet teeth in channel B, so that channels B and C has the same number of ratchet teeth.
-In this case, the flow robustly split into the two outlet channels with a 1:1 ratio, as shown in Fig.\ref{fig:ratchet-dominance}(b).
-This result suggests that the ratchet teeth in the outlet channels play a dominant role in determining the flow behavior at bifurcations.
-In Fig.\ref{fig:ratchet-dominance}(c), we show the flow behavior in channels with equal length and number of ratchet teeth.
-The flow again splits with a 1:1 ratio, confirming the dominant role of ratchet teeth.
-
-\begin{figure*}[!h]
-    \includegraphics[width=\textwidth]{5-ratchet-dominance}
+\begin{figure*}[t]
+    \includegraphics[width=\textwidth]{bifurcation-ratchet.pdf}
     \caption{
     \textbf{Ratchet inlet and outlets: histogram and time series.}
-    (a) The numbers of ratchet teeth in channels A, B and C are 4, 13 and 4, respectively. 
-    Let's refer to this bifurcation channel network 4-13-4 bifurcation. 
-    In contrast to straight channels, the flows exhibit a sharp peak in the histogram, while other splitting ratios remain rarely explored. 
+    (a) The numbers of ratchet teeth in channels A, B and C are 4, 14 and 4, respectively. 
     The splitting ratio is around 3:1.
     (b) 4-4-4 bifurcation, where channel B has an extended straight portion. 
     The flows again exhibit a sharp peak in the histogram at a splitting ratio around 1:1.
     (c) 5-5-5 bifurcation, where all the channels are of the same length. 
     The flows again exhibit a sharp peak in the histogram at a splitting ratio around 1:1.
     }
-    \label{fig:ratchet-dominance}
+    \label{fig:bifurcation-ratchet}
 \end{figure*}
 
-\begin{figure*}[!ht]
-    \includegraphics[width=\textwidth]{6-angle-ratchet-competition}
-    \caption{
-    \textbf{The role of turning angles.}
-    (a) A bifurcation with a 9-teeth ratchet inlet and 2 straight outlets of the same length. 
-    The outlets have different turning angles with respect to the inlet channel A: $\angle AOB=90^\circ$ and $\angle AOC=180^\circ$.
-    The flow rate histogram and time series suggest that the flow prefers the $180^\circ$ channel C, i.e. the channel parallel to the inlet channel A, rather than channel B which requires a $90^\circ$ turn. 
-    (b) Adding various numbers of ratchets to channel B to compete with the $90^\circ$ turning angle. 
-    From left to right, 1, 3, 5, 7 ratchet teeth are added to the end of channel B. 
-    Below the schematics of bifurcation channels are the $\phi_B$-$\phi_C$ flow rate histograms corresponding to the design above. 
-    As the number of ratchet teeth in channel B is increased, the splitting ratio between B and C is increase from 0 to $\infty$.
-    }
-    \label{fig:angle-ratchet-competition}
-\end{figure*}
+The result from the asymmetric channel length experiment suggests that the ratchet structure may play a more dominant role than channel length.
+We therefore use ratchet structures to modify both the inlet and outlet channels.
+The numbers of ratchet teeth and the length of non-ratchet parts are varied to study their effects on the flow behavior. 
+All the experimental results, including flow rate time series and normalized histograms, are shown in Fig.~\ref{fig:bifurcation-ratchet}.
+A general observation is that, in contrast to straight channel bifurcation systems, the flows exhibit a sharp peak in the histogram, suggesting that the flow configurations are more deterministic and stable.
+When the outlet channels have different numbers of ratchet, as the channel system shown in Fig.~\ref{fig:bifurcation-ratchet}(a), the flow robustly splits into different fractions in the two outlet channels.
+Interestingly, the flow rate ratio in the two outlet channels is almost equal to the ratio between the number of ratchet teeth.
+
+Does this unequal splitting of flow arise from the difference in the length of the channels?
+To answer this question, we keep the channels lengths unchanged, but modify the number of ratchet teeth in channel B, so that channels B and C has the same number of ratchet teeth.
+In this case, the flow robustly split into the two outlet channels with a 1:1 ratio, as shown in Fig.~\ref{fig:bifurcation-ratchet}(b).
+This result suggests that the ratchet teeth in the outlet channels play a dominant role in determining the splitting ratio at bifurcations.
+
+Does the length of the straight part of the outlet channels matter?
+To answer this question, we further modify the channel system in Fig.\ref{fig:bifurcation-ratchet}(b) by make the length of the straight part of all the three channels identical, as shown in Fig.~\ref{fig:bifurcation-ratchet}(c).
+The flow again splits with a 1:1 ratio, confirming the dominant role of ratchet teeth.
+
+
+\subsection{Wall slip and defect dynamics}
+
+
+% \begin{figure*}[!ht]
+%     \includegraphics[width=\textwidth]{6-angle-ratchet-competition}
+%     \caption{
+%     \textbf{The role of turning angles.}
+%     (a) A bifurcation with a 9-teeth ratchet inlet and 2 straight outlets of the same length. 
+%     The outlets have different turning angles with respect to the inlet channel A: $\angle AOB=90^\circ$ and $\angle AOC=180^\circ$.
+%     The flow rate histogram and time series suggest that the flow prefers the $180^\circ$ channel C, i.e. the channel parallel to the inlet channel A, rather than channel B which requires a $90^\circ$ turn. 
+%     (b) Adding various numbers of ratchets to channel B to compete with the $90^\circ$ turning angle. 
+%     From left to right, 1, 3, 5, 7 ratchet teeth are added to the end of channel B. 
+%     Below the schematics of bifurcation channels are the $\phi_B$-$\phi_C$ flow rate histograms corresponding to the design above. 
+%     As the number of ratchet teeth in channel B is increased, the splitting ratio between B and C is increase from 0 to $\infty$.
+%     }
+%     \label{fig:angle-ratchet-competition}
+% \end{figure*}
 
 \bibliography{ref}
 \bibliographystyle{unsrtnat}
