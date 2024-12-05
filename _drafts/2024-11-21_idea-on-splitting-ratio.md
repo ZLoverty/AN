@@ -42,9 +42,9 @@ $$
 The goal is to minimize $E_{p,T}$, which is very simple:
 
 $$
-E_{p,T} = 4\left( V_C - \frac{1}{4}V_0 \right)^2 + \frac{15}{16}V_0^2,
+E_{p,T} = \left[4\left( V_C - \frac{1}{4}V_0 \right)^2 + \frac{15}{16}V_0^2\right]L_C,
 $$
 
 which is minimal when $V_C=V_0/4$. This means $V_B = 3V_0/4$, which gives exactly the splitting ratio we observed.
 
-The only missing piece in this picture is $\alpha=2$ is not well justified. One way to do it is to think of the energy penalty as caused by the additional bending. When looking at the formula for the free energy associated with distortion in free energy, I found this promising because all the terms has a square of director field. But I haven't figured out how to set up the connection between the velocity difference and the bending. This is likely the last missin piece of this paper. 
+The only missing piece in this picture is $\alpha=2$ is not well justified. One way to do it is to think of the energy penalty as caused by the additional bending. When looking at the formula for the free energy associated with distortion in free energy, I found this promising because all the terms has a square of director field. But I haven't figured out how to set up the connection between the velocity difference and the bending. This is likely the last missing piece of this paper. 

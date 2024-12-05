@@ -111,10 +111,10 @@ Active matter flows spontaneously under channel confinement, forming coherent fl
 Such behavior implies several possibile applications of active matter, including serving as micro-scale transport, soft robotics and active matter logic \cite{Thampi2022,Woodhouse2017}.
 Boundary-mediated control has been shown effective in manipulating active matter in both experiments \cite{Lushi2014,Wioland2016,Wioland2016,Wu2017,Morin2018,Liu2019,Ross2019,Hardouin2019} and simulations \cite{Voituriez2005,Marenduzzo2007,Shendruk2017,Vaidya2024}.
 As of now, most studies have focused on the behavior of active matter in stand-alone smooth channels, which showed that active flows were intrinsically bistable \cite{Wu2017,Morin2018}.
-However, to realize the full potential of active matter channel flows, it is necessary to study the behavior of active matter in channel networks and with asymmertic geometries, as suggested in the pioneering active matter logic work by \citet{Woodhouse2017}.
+However, to realize the full potential of active matter channel flows, it is necessary to study the behavior of active matter in channel networks and with asymmertic geometries, as suggested by the pioneering theoretical work on active matter logic \cite{Woodhouse2017}.
 Very recently, channel networks attract more attention, and frustrated flow states have been investigated in coupled annular rings \cite{Hardouin2020} and large honeycomb-like networks \cite{Jorge2024}.
 The other essential component of active matter logic is the diode channel, which only permits flow in one direction.
-While a few early works have hinted or employed asymmetric geometries, such as a kink or an array of ratchet teeth, to steer active matter flows \cite{ElizabethHulme2008,DiLeonardo2010,Wu2017,Hardouin2020,Ray2023,Vaidya2024}, a systematic study of asymmetric channels in the context of channel networks is still missing. 
+While a few early works have hinted or employed asymmetric geometries, such as a kink or an array of ratchet teeth, to steer active matter flows \cite{ElizabethHulme2008,DiLeonardo2010,Wu2017,Hardouin2020,Ray2023,Vaidya2024}, a systematic study of asymmetric channels in the context of channel networks, especially frustrated flow states, is still missing. 
 
 % Spontaneous flow under channel confinement is a phenomenon observed in various active matter systems \cite{Lushi2014,Wioland2016,Wu2017,Duclos2017,Morin2018,Hardouin2020}.
 % Due to its ubiquitous and robustness, active matter holds significant potential for many applications, especially in the fields of microfluidics and soft robotics \cite{Hardouin2020}.
@@ -157,9 +157,9 @@ While a few early works have hinted or employed asymmetric geometries, such as a
 % Second, this realization lays the foundation for potential applications of active flow networks in mass transport and flow computation. 
 
 In this work, we filled this gap by experimentally studying the flow behavior of active matter at channel networks consisting of asymmetric channels. 
-To obtain a clear understanding, we studied the simplest possible form of a channel network -- the bifurcation -- where a channel splits into two at a node.
-Despite of being simple, the bifurcation is a key element of more complex channel networks, and a great system to study frustrated flow states.
-Assymetry are in two levels: in single channel level, ratchets are introduced to favor the flow in a certain direction; in network level, input channels are designed to split into channels with different lengths, number of ratchets and turning angles.
+To obtain a clear understanding, we studied the simplest possible form of a channel network -- the bifurcation -- where three channels are connected to one node.
+Despite of being simple, the bifurcation is a key element of more complex channel networks, and a great system to observe frustrated flow states.
+\red{Assymetry are in two levels: in single channel level, ratchets are introduced to favor the flow in a certain direction; in network level, input channels are designed to split into channels with different lengths, number of ratchets and turning angles.}
 Our results suggest that ratchets and turning angles help establish stable polarized flow states, where the inlet flow primarily goes into one of the outlet channels, leaving the other channel with little flow.
 In contrast, channel length is a less relevant factor, which results in more frequently changing flow states.
 \red{The topological defects show different dynamics in flowing ratchet channels from frustrated straight channels, uncovering the steering mechanism of the ratchets.}
@@ -297,11 +297,11 @@ This result shows that the longer path is not necessarily preferred.
     \label{fig:bifurcation-ratchet}
 \end{figure*}
 
-The result from the asymmetric channel length experiment suggests that the ratchet structure may play a more dominant role than channel length.
+The result from the asymmetric channel length experiment suggests that the ratchet structures play a more dominant role than channel length.
 We therefore use ratchet structures to modify both the inlet and outlet channels.
 The numbers of ratchet teeth and the length of non-ratchet parts are varied to study their effects on the flow behavior. 
 All the experimental results, including flow rate time series and normalized histograms, are shown in Fig.~\ref{fig:bifurcation-ratchet}.
-A general observation is that, in contrast to straight channel bifurcation systems, the flows exhibit a sharp peak in the histogram, suggesting that the flow configurations are more deterministic and stable.
+A general observation is that, in contrast to straight channel bifurcation systems, the flows exhibit a sharp peak in the histogram, indicating that the flow configurations are more deterministic and stable.
 When the outlet channels have different numbers of ratchet, as the channel system shown in Fig.~\ref{fig:bifurcation-ratchet}(a), the flow robustly splits into different fractions in the two outlet channels.
 Interestingly, the flow rate ratio in the two outlet channels is almost equal to the ratio between the number of ratchet teeth.
 
@@ -315,8 +315,13 @@ To answer this question, we further modify the channel system in Fig.\ref{fig:bi
 The flow again splits with a 1:1 ratio, confirming the dominant role of ratchet teeth.
 
 
-\subsection{Wall slip and defect dynamics}
+\subsection{Defect dynamics: wall-slip and ratchet pinning}
 
+In ratchet channels, the defects are pinned by the ratchet teeth, similar to the wall defect pinning observed in a previous works by indentation \cite{Hardouin2022}.
+
+\subsection{Frustrated flow states}
+
+Flow frustrations are induced by coupling multiple channels with spontaneous flows, and are characteristic to active flow networks \cite{Jorge2024, Beppu2024}.
 
 % \begin{figure*}[!ht]
 %     \includegraphics[width=\textwidth]{6-angle-ratchet-competition}
