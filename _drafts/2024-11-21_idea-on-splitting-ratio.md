@@ -5,11 +5,11 @@ title: an idea on splitting ratio
 
 # An idea on splitting ratio
 
-Today, we reviewing the bifurcation video, I realized that the microtubule filament organization in the slow channel was quite different from the fast channel. An example is shown in the picture below. This is the fully ratchet channel with 4, 13, 4 teeth in channel A, B and C, B being the longer and faster outlet channel. I observe that in faster channels the filaments are more aligned, while in the slower channel the bendings are more pronounced. 
+Today, when reviewing the bifurcation video, I realized that the microtubule filament organization in the slow channel was quite different from the fast channel. An example is shown in the picture below. This is the fully ratchet channel with 4, 13, 4 teeth in channel A, B and C, B being the longer and faster outlet channel. I observe that in the faster channels the filaments are more aligned, while in the slower channel the bendings are more pronounced. 
 
 <img src="/assets/images/2024/11/filament-organization-frustrated.png" width=700px> 
 
-I can understand this by hypothesizing that given activity and channel geometry, the active nematics have an intrinsic velocity $V_0$. Due to mass conservation, the outlet channels cannot reach $V_0$ at the same time, so frustration has to occur. We can use an energy penalty, $E_p$ to describe this frustration. Apparently, the energy penalty depends on the difference between the intrinsic velocity $V_0$ and the actual velocity $V$. It should also depend on the length of the channel, because I assume that it is the extra bending that causes the energy penalty. So taken together, we have a scaling of $E_p$:
+I can understand this by hypothesizing that given activity and channel geometry, the active nematics have an intrinsic velocity $V_0$. Due to mass conservation, the outlet channels cannot reach $V_0$ at the same time, so frustration has to occur. We can use an energy penalty, $E_p$ to describe this frustration. Apparently, the energy penalty depends on the difference between the intrinsic velocity $V_0$ and the actual velocity $V$. It should also depend on the length of the channel, because extra bending happens in the whole channel. Presumably, the density of excess energy is identical in each channel. So taken together, we have a scaling of $E_p$:
 
 $$
 E_p \propto (V_0 - V)^\alpha L.
