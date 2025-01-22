@@ -126,13 +126,22 @@ python crop_channel.py crop_data nd2Dir
 ##### 2. PIV
 In order to make data treatment consistent, we decide that all the PIV should be done using the [ImageJ PIV Plugin](https://sites.google.com/site/qingzongtseng/piv/tuto#dataformat). For small scale analysis, it is convenient to use: just open a stack of two frames, and the plugin will give the results. However, for batch processing, this is not ideal since we have to convert the images to many many stacks of two frames, before the plugin takes over. 
 
-Claire wrote [a ImageJ-macro](https://drive.google.com/file/d/1_3N5QFBLRBwhq626v-cDRyAmMFfGY5IN/view?usp=share_link) that automated the process of converting raw images to pairs and calling the plugin. This macro looks for all the .tif files in the given directory (/root/tif) and perform PIV analysis on them. The results are saved in another folder (/root/PIV).
+Claire wrote [a ImageJ-macro, PIV_STACK_directory.ijm](https://drive.google.com/file/d/1_3N5QFBLRBwhq626v-cDRyAmMFfGY5IN/view?usp=share_link) that automated the process of converting raw images to pairs and calling the plugin. This macro looks for all the .tif files in the given directory (/root/tif) and perform PIV analysis on them. The results are saved in another folder (/root/PIV).
 
 For my own convenience (run one code for all the analysis), I use Python to call ImageJ PIV macro using the [headless mode](https://imagej.net/learn/headless):
 
 ```
 python ij_piv.py img_folder
 ```
+
+The `ij_piv.py` script is basically a wrapper of the macro `PIV_STACK_directory.ijm`. The code is as simple as the following.
+
+```python
+img_folder = sys.argv[1]
+os.system("ImageJ-win64 --headless --console -macro PIV_STACK_directory.ijm \"{}\"".format(img_folder))
+```
+
+To make it work, we need to make sure that ImageJ can find the macro in the default directory (`fiji.app/macros/`). 
 
 To avoid spamming the commandline output, I modify the PIV plugin to remove the logging info at each step. The modified the `PIV_.jar` file can be downloaded [here](https://drive.google.com/file/d/1ISZ734aDwkpSRf9e6gz2azPByfD8qlGl/view?usp=share_link). To install the modified version, you need to install the PIV plugin first according to the official site, then replace the `PIV_.jar` file in the plugins folder of ImageJ (in my case `C:\Fiji.app\plugins`) with the modified version. 
 
