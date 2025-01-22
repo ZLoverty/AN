@@ -28,7 +28,7 @@ function batchPIV(dir, PIV_folder) {
 					}
 				}
 			}
-			print(pivlist.length + " frames in total, start from " + maxframe);
+			// print(pivlist.length + " frames in total, start from " + maxframe);
 			for(j=maxframe;j<=nSlices-1;j+=1) {
 				if ((j % 10) == 0) print("Frame", j);
 				if ((j % 100) == 0) print("--- " + dir + " - " + list[i] + " ---");
