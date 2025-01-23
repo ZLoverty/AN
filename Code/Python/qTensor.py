@@ -107,4 +107,4 @@ if __name__ == "__main__":
         Q_list.append(Q)
 
     Qs = np.stack(Q_list)
-    np.save(saveDir, angles)
+    np.save(saveDir, Qs)
