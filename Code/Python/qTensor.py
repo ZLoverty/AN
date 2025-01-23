@@ -1,11 +1,11 @@
 """
-director_field.py
+qTensor.py
 =================
-Compute director field from a 8-bit image stack.
+Compute Q-tensor from a 8-bit image stack.
 
 Syntax
 ------
-python director_field.py imgDir --sigma1 1 --sigma2 8
+python qTensor.py imgDir --sigma1 1 --sigma2 8
 
 imgDir: the input image stack tiff.
 --sigma1: sigma for the raw image, default to 1.
@@ -13,7 +13,8 @@ imgDir: the input image stack tiff.
 
 Edit
 ----
-Jan 19, 2023 -- Initial commit.
+Jan 19, 2025 -- Initial commit.
+Jan 22, 2025 -- Compute Q-tensor instead of the director field.
 """
 
 import numpy as np
@@ -32,7 +33,8 @@ def fndstruct(sigma1, sigma2, im):
     im -- the input image, [M x N].
 
     Returns:
-    director_field -- the structure tensor orientation, [M x N x 2].
+    director -- the director field of the nematic system, [M x N x 2].
+    S -- the magnitude of the Q-tensor, [M x N].
     """
     imgf = gaussian_filter(im, sigma1)
 
@@ -61,22 +63,19 @@ def fndstruct(sigma1, sigma2, im):
     # require the y component director to be positive, otherwise flip the director
     director[director[:,:,1]<=0] *= -1
 
-    return director
+    return director, np.max(eigenvalues, axis=2)
 
-def director_to_angle(director):
+def qTensor(director, S):
     """
-    Convert a director field to an angle field.
-    To restore the director field from angle field, use d = np.array([np.cos(angle-np.pi), np.sin(angle-np.pi)]).transpose(1, 2, 0).
-
-    Args:
-    director -- the input director field, [M x N x 2].
-
-    Returns:
-    angle_field -- the angle field, [M x N].
+    Compute the Q-tensor from the director field.
     """
-    angle_field = np.arctan(director[:, :, 1] / director[:, :, 0]) + np.pi/2
-    angle_field_8bit = (angle_field / np.pi * 255).astype(np.uint8)
-    return angle_field_8bit
+    Q = np.zeros((director.shape[0], director.shape[1], 2, 2))
+    Q[:, :, 0, 0] = director[:, :, 0] * director[:, :, 0] - 0.5
+    Q[:, :, 0, 1] = director[:, :, 0] * director[:, :, 1]
+    Q[:, :, 1, 0] = director[:, :, 1] * director[:, :, 0]
+    Q[:, :, 1, 1] = director[:, :, 1] * director[:, :, 1] - 0.5
+
+    return Q * S[:, :, None, None]
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
@@ -91,21 +90,21 @@ if __name__ == "__main__":
     imgfolder, filename = os.path.split(imgDir)
     name, ext = os.path.splitext(filename)
     mainfolder = os.path.split(imgfolder)[0]
-    savefolder = os.path.join(mainfolder, "director_field")
+    savefolder = os.path.join(mainfolder, "qTensor")
     if not os.path.exists(savefolder):
         os.makedirs(savefolder)
     saveDir = os.path.join(savefolder, name+".npy")
 
     stack = io.imread(imgDir)
-    angle_list = []
+    Q_list = []
     for num, img in enumerate(stack):
         if num % 10 == 0:
             print("processing frame {:04d}".format(num))
         if num % 100 == 0:
             print("================ {} =================".format(name))
-        d = fndstruct(sigma1, sigma2, img)
-        angle = director_to_angle(d)
-        angle_list.append(angle)
-    
-    angles = np.stack(angle_list)
+        d, s = fndstruct(sigma1, sigma2, img)
+        Q = qTensor(d, s)
+        Q_list.append(Q)
+
+    Qs = np.stack(Q_list)
     np.save(saveDir, angles)
