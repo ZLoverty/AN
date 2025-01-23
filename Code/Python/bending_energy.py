@@ -17,6 +17,7 @@ Edit
 ----
 Jan 19, 2025 -- Initial commit.
 Jan 20, 2025 -- Fix the computation of director field, by requiring positive y component. Add mask processing.
+Jan 22, 2025 -- Compute Q-tensor instead of the director field, as the director field is sensitive to the + and - direction.
 """
 
 import numpy as np
@@ -44,9 +45,9 @@ def compute_gradient(field):
 
     return grad, div, curl
 
-def compute_bending_energy(field):
+def compute_bending_energy_old(field):
     """
-    Compute the bending energy of a 2D field.
+    Compute the bending energy of a 2D field using the director field.
 
     Args:
     field -- the input 2D field, [M x N x 2].
@@ -56,6 +57,36 @@ def compute_bending_energy(field):
     """
     grad, div, curl = compute_gradient(field)
     bending_energy = div**2 + curl**2
+
+    return bending_energy
+
+def compute_bending_energy(Q_tensor):
+    """
+    Compute the bending energy from a 2D Q-tensor.
+
+    Args:
+    Q_tensor: A 2D array of Q-tensor components with shape (Nx, Ny, 2, 2).
+
+    Returns:
+    bending_energy: The total bending energy.
+    """
+
+    Nx, Ny, _, _ = Q_tensor.shape
+
+    # Compute spatial derivatives using finite differences
+    dQxx_dx = np.gradient(Q_tensor[:, :, 0, 0], axis=0)
+    dQxx_dy = np.gradient(Q_tensor[:, :, 0, 0], axis=1)
+    dQxy_dx = np.gradient(Q_tensor[:, :, 0, 1], axis=0)
+    dQxy_dy = np.gradient(Q_tensor[:, :, 0, 1], axis=1)
+    dQyy_dx = np.gradient(Q_tensor[:, :, 1, 1], axis=0)
+    dQyy_dy = np.gradient(Q_tensor[:, :, 1, 1], axis=1)
+
+    # Compute the bending energy density
+    bending_energy = (
+        dQxx_dx**2 + dQxx_dy**2 +
+        dQxy_dx**2 + dQxy_dy**2 +
+        dQyy_dx**2 + dQyy_dy**2
+    )
 
     return bending_energy
 
@@ -80,7 +111,7 @@ def angle_to_director(angle_8_bit):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Compute bending energy from a director field.")
-    parser.add_argument("directorDir", help="the director field file dir.")
+    parser.add_argument("qTensorDir", help="the director field file dir.")
     parser.add_argument("maskDir", help="the mask field file dir.")
     args = parser.parse_args()
 
@@ -88,7 +119,7 @@ if __name__ == "__main__":
     mask = io.imread(args.maskDir)
 
     # process the filename
-    folder, filename = os.path.split(args.directorDir)
+    folder, filename = os.path.split(args.qTensorDir)
     name, ext = os.path.splitext(filename)
     mainfolder = os.path.split(folder)[0]
     savefolder = os.path.join(mainfolder, "bending_energy")
@@ -96,14 +127,13 @@ if __name__ == "__main__":
         os.makedirs(savefolder)
 
     # compute bending energy
-    angles = np.load(args.directorDir)
+    Qs = np.load(args.qTensorDir)
     energy_list = []
     nFrame = angles.shape[0]
-    for num, angle in enumerate(angles):
+    for num, Q in enumerate(Qs):
         show_progress(num/nFrame, label=name)
-        director = angle_to_director(angle)
-        director[~mask] = np.nan
-        bending_energy = compute_bending_energy(director)
+        bending_energy = compute_bending_energy(Q)
+        bending_energy[~mask.astype("bool")] = np.nan
         energy_list.append(np.nanmean(bending_energy))
     
     # save bending energy data
