@@ -15,6 +15,7 @@ Edit
 ----
 Jan 19, 2025 -- Initial commit.
 Jan 22, 2025 -- Compute Q-tensor instead of the director field.
+Jan 23, 2025 -- Save data as float16.
 """
 
 import numpy as np
@@ -103,8 +104,8 @@ if __name__ == "__main__":
         if num % 100 == 0:
             print("================ {} =================".format(name))
         d, s = fndstruct(sigma1, sigma2, img)
-        Q = qTensor(d, s)
+        Q = qTensor(d, s).astype("float16")
         Q_list.append(Q)
 
-    Qs = np.stack(Q_list)
+    Qs = np.stack(Q_list).astype("float16")
     np.save(saveDir, Qs)
