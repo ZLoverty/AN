@@ -8,7 +8,7 @@ Compute bending energy from a director field.
 
 Syntax
 ------
-python bending_energy.py directorDir maskDir
+python bending_energy.py qTensorDir maskDir
 
 directorDir: the director field, [M x N x 2].
 maskDir: the mask field, [M x N].
@@ -129,7 +129,7 @@ if __name__ == "__main__":
     # compute bending energy
     Qs = np.load(args.qTensorDir)
     energy_list = []
-    nFrame = angles.shape[0]
+    nFrame = Qs.shape[0]
     for num, Q in enumerate(Qs):
         show_progress(num/nFrame, label=name)
         bending_energy = compute_bending_energy(Q)
