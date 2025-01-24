@@ -18,6 +18,7 @@ Edit
 Jan 19, 2025 -- Initial commit.
 Jan 20, 2025 -- Fix the computation of director field, by requiring positive y component. Add mask processing.
 Jan 22, 2025 -- Compute Q-tensor instead of the director field, as the director field is sensitive to the + and - direction.
+Jan 23, 2025 -- Use float64 for the energy calculation to avoid overflow.
 """
 
 import numpy as np
@@ -132,7 +133,7 @@ if __name__ == "__main__":
     nFrame = Qs.shape[0]
     for num, Q in enumerate(Qs):
         show_progress(num/nFrame, label=name)
-        bending_energy = compute_bending_energy(Q)
+        bending_energy = compute_bending_energy(Q.astype("float64"))
         bending_energy[~mask.astype("bool")] = np.nan
         energy_list.append(np.nanmean(bending_energy))
     
