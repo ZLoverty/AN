@@ -16,10 +16,12 @@ Edit
 Jan 19, 2025 -- Initial commit.
 Jan 22, 2025 -- Compute Q-tensor instead of the director field.
 Jan 23, 2025 -- Save data as float16.
+Jan 25, 2025 -- Smooth the Q-tensor using a uniform filter.
+Jan 26, 2025 -- Remove the scalar S from the Q-tensor.
 """
 
 import numpy as np
-from scipy.ndimage import gaussian_filter
+from scipy.ndimage import gaussian_filter, uniform_filter
 from skimage import io
 import argparse
 import os
@@ -66,28 +68,30 @@ def fndstruct(sigma1, sigma2, im):
 
     return director, np.max(eigenvalues, axis=2)
 
-def qTensor(director, S):
+def qTensor(director, size=10):
     """
     Compute the Q-tensor from the director field.
     """
     Q = np.zeros((director.shape[0], director.shape[1], 2, 2))
-    Q[:, :, 0, 0] = director[:, :, 0] * director[:, :, 0] - 0.5
-    Q[:, :, 0, 1] = director[:, :, 0] * director[:, :, 1]
-    Q[:, :, 1, 0] = director[:, :, 1] * director[:, :, 0]
-    Q[:, :, 1, 1] = director[:, :, 1] * director[:, :, 1] - 0.5
+    Q[:, :, 0, 0] = uniform_filter(director[:, :, 0] * director[:, :, 0], size=size) - 0.5
+    Q[:, :, 0, 1] = uniform_filter(director[:, :, 0] * director[:, :, 1], size=size)
+    Q[:, :, 1, 0] = uniform_filter(director[:, :, 1] * director[:, :, 0], size=size)
+    Q[:, :, 1, 1] = uniform_filter(director[:, :, 1] * director[:, :, 1], size=size) - 0.5
 
-    return Q * S[:, :, None, None]
+    return Q
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
     args.add_argument("imgDir", help="input image stack tiff")
     args.add_argument("--sigma1", default=1, help="sigma for the raw image", type=float)
     args.add_argument("--sigma2", default=8, help="sigma for the gradient fields", type=float)
+    args.add_argument("--size", default=5, help="size of the uniform for the Q-tensor", type=int)
     args = args.parse_args()
 
     imgDir = args.imgDir
     sigma1 = args.sigma1
     sigma2 = args.sigma2
+    size = args.size
     imgfolder, filename = os.path.split(imgDir)
     name, ext = os.path.splitext(filename)
     mainfolder = os.path.split(imgfolder)[0]
@@ -104,7 +108,7 @@ if __name__ == "__main__":
         if num % 100 == 0:
             print("================ {} =================".format(name))
         d, s = fndstruct(sigma1, sigma2, img)
-        Q = qTensor(d, s).astype("float16")
+        Q = qTensor(d, size=size).astype("float16")
         Q_list.append(Q)
 
     Qs = np.stack(Q_list).astype("float16")
