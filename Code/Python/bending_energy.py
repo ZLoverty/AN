@@ -19,6 +19,7 @@ Jan 19, 2025 -- Initial commit.
 Jan 20, 2025 -- Fix the computation of director field, by requiring positive y component. Add mask processing.
 Jan 22, 2025 -- Compute Q-tensor instead of the director field, as the director field is sensitive to the + and - direction.
 Jan 23, 2025 -- Use float64 for the energy calculation to avoid overflow.
+Feb 02, 2025 -- Compute from director field instead of Q-tensor. This is to save the storage space of intermediate results. 
 """
 
 import numpy as np
@@ -109,18 +110,34 @@ def angle_to_director(angle_8_bit):
 
     return director
 
+def qTensor(director, size=10):
+    """
+    Compute the Q-tensor from the director field.
+    """
+    Q = np.zeros((director.shape[0], director.shape[1], 2, 2))
+    Q[:, :, 0, 0] = uniform_filter(director[:, :, 0] * director[:, :, 0], size=size) - 0.5
+    Q[:, :, 0, 1] = uniform_filter(director[:, :, 0] * director[:, :, 1], size=size)
+    Q[:, :, 1, 0] = uniform_filter(director[:, :, 1] * director[:, :, 0], size=size)
+    Q[:, :, 1, 1] = uniform_filter(director[:, :, 1] * director[:, :, 1], size=size) - 0.5
+
+    return Q
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Compute bending energy from a director field.")
-    parser.add_argument("qTensorDir", help="the director field file dir.")
+    parser.add_argument("directorDir", help="the director field file dir.")
     parser.add_argument("maskDir", help="the mask field file dir.")
+    parser.add_argument("--size", type=int, default=8, help="the kernel size of the uniform filter to smooth the Q-tensor.")
     args = parser.parse_args()
+
+    # load director field
+    angles = np.load(args.directorDir)
+    
 
     # load mask
     mask = io.imread(args.maskDir)
 
     # process the filename
-    folder, filename = os.path.split(args.qTensorDir)
+    folder, filename = os.path.split(args.directorDir)
     name, ext = os.path.splitext(filename)
     mainfolder = os.path.split(folder)[0]
     savefolder = os.path.join(mainfolder, "bending_energy")
@@ -128,12 +145,13 @@ if __name__ == "__main__":
         os.makedirs(savefolder)
 
     # compute bending energy
-    Qs = np.load(args.qTensorDir)
     energy_list = []
-    nFrame = Qs.shape[0]
-    for num, Q in enumerate(Qs):
+    nFrame = angles.shape[0]
+    for num, angle in enumerate(angles):
         show_progress(num/nFrame, label=name)
-        bending_energy = compute_bending_energy(Q.astype("float64"))
+        d = angle_to_director(angle)
+        Q = qTensor(d, size=args.size)
+        bending_energy = compute_bending_energy(Q)
         bending_energy[~mask.astype("bool")] = np.nan
         energy_list.append(np.nanmean(bending_energy))
     
