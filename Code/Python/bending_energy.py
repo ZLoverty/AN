@@ -8,7 +8,7 @@ Compute bending energy from a director field.
 
 Syntax
 ------
-python bending_energy.py qTensorDir maskDir
+python bending_energy.py directorDir maskDir
 
 directorDir: the director field, [M x N x 2].
 maskDir: the mask field, [M x N].
@@ -20,6 +20,7 @@ Jan 20, 2025 -- Fix the computation of director field, by requiring positive y c
 Jan 22, 2025 -- Compute Q-tensor instead of the director field, as the director field is sensitive to the + and - direction.
 Jan 23, 2025 -- Use float64 for the energy calculation to avoid overflow.
 Feb 02, 2025 -- Compute from director field instead of Q-tensor. This is to save the storage space of intermediate results. 
+Feb 05, 2025 -- fix docstring; import `uniform_filter`.
 """
 
 import numpy as np
@@ -28,6 +29,7 @@ import os
 import argparse
 from myimagelib.myImageLib import show_progress
 from skimage import io
+from scipy.ndimage import uniform_filter
 
 def compute_gradient(field):
     """
