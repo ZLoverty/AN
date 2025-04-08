@@ -21,6 +21,7 @@ Jan 22, 2025 -- Compute Q-tensor instead of the director field, as the director 
 Jan 23, 2025 -- Use float64 for the energy calculation to avoid overflow.
 Feb 02, 2025 -- Compute from director field instead of Q-tensor. This is to save the storage space of intermediate results. 
 Feb 05, 2025 -- fix docstring; import `uniform_filter`.
+Apr 06, 2025 -- (i) Remove compute_gradient funtion, as it is not used; (ii) 
 """
 
 import numpy as np
@@ -30,39 +31,7 @@ import argparse
 from myimagelib.myImageLib import show_progress
 from skimage import io
 from scipy.ndimage import uniform_filter
-
-def compute_gradient(field):
-    """
-    Compute the gradient, divergence andn curl of a 2D field.
-
-    Args:
-    field -- the input 2D field, [M x N x 2].
-
-    Returns:
-    gradient -- the gradient of the field, [M x N x 2 x 2].
-    """
-    grad_x = np.gradient(field[:, :, 0])
-    grad_y = np.gradient(field[:, :, 1])
-    grad = np.array([grad_x, grad_y]).transpose(1, 2, 0, 3)
-    div = grad_x[0] + grad_y[1]
-    curl = grad_y[0] - grad_x[1]
-
-    return grad, div, curl
-
-def compute_bending_energy_old(field):
-    """
-    Compute the bending energy of a 2D field using the director field.
-
-    Args:
-    field -- the input 2D field, [M x N x 2].
-
-    Returns:
-    bending_energy -- the bending energy of the field, [M x N].
-    """
-    grad, div, curl = compute_gradient(field)
-    bending_energy = div**2 + curl**2
-
-    return bending_energy
+import pdb
 
 def compute_bending_energy(Q_tensor):
     """
@@ -128,7 +97,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Compute bending energy from a director field.")
     parser.add_argument("directorDir", help="the director field file dir.")
     parser.add_argument("maskDir", help="the mask field file dir.")
-    parser.add_argument("--size", type=int, default=8, help="the kernel size of the uniform filter to smooth the Q-tensor.")
+    parser.add_argument("--size", type=int, default=8, help="the kernel size of the uniform filter to smooth the Q-tensor. Default: 8.")
     args = parser.parse_args()
 
     # load director field
@@ -143,20 +112,31 @@ if __name__ == "__main__":
     name, ext = os.path.splitext(filename)
     mainfolder = os.path.split(folder)[0]
     savefolder = os.path.join(mainfolder, "bending_energy")
-    if not os.path.exists(savefolder):
-        os.makedirs(savefolder)
+    average_savefolder = os.path.join(mainfolder, "time_averaged_elastic_energy")
+    os.makedirs(savefolder, exist_ok=True)
+    os.makedirs(average_savefolder, exist_ok=True)
 
     # compute bending energy
-    energy_list = []
-    nFrame = angles.shape[0]
+    energy_field_list = []
     for num, angle in enumerate(angles):
-        show_progress(num/nFrame, label=name)
+        show_progress(num / angles.shape[0], label=name)
         d = angle_to_director(angle)
         Q = qTensor(d, size=args.size)
         bending_energy = compute_bending_energy(Q)
-        bending_energy[~mask.astype("bool")] = np.nan
-        energy_list.append(np.nanmean(bending_energy))
-    
+        # bending_energy[~mask.astype("bool")] = np.nan
+        energy_field_list.append(bending_energy)
+        # energy_list.append(np.nanmean(bending_energy))
+
+    bending_energy = np.stack(energy_field_list)
+    mask_3d = np.broadcast_to(mask, bending_energy.shape)
+    bending_energy[~mask_3d.astype("bool")] = np.nan
+    bending_energy_mean = np.mean(bending_energy, axis=0)
+    energy_list = np.nanmean(bending_energy, axis=(1, 2))
+
+    # save the bending energy field
+    np.save(os.path.join(average_savefolder, name+".npy"), bending_energy_mean)
+
     # save bending energy data
     df = pd.DataFrame({"frame": range(len(energy_list)), "bending_energy": energy_list})
     df.to_csv(os.path.join(savefolder, name+".csv"), index=False)
+    
