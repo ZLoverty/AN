@@ -8,10 +8,11 @@ Compute bending energy from a director field.
 
 Syntax
 ------
-python bending_energy.py directorDir maskDir
+python bending_energy.py directorDir maskDir [--size 8]
 
 directorDir: the director field, [M x N x 2].
 maskDir: the mask field, [M x N].
+--size: the kernel size of the uniform filter to smooth the Q-tensor. Default: 8.
 
 Edit
 ----
@@ -21,7 +22,8 @@ Jan 22, 2025 -- Compute Q-tensor instead of the director field, as the director 
 Jan 23, 2025 -- Use float64 for the energy calculation to avoid overflow.
 Feb 02, 2025 -- Compute from director field instead of Q-tensor. This is to save the storage space of intermediate results. 
 Feb 05, 2025 -- fix docstring; import `uniform_filter`.
-Apr 06, 2025 -- (i) Remove compute_gradient funtion, as it is not used; (ii) 
+Apr 06, 2025 -- (i) Remove compute_gradient funtion, as it is not used; (ii) Also save the time averaged bending energy field.
+Apr 10, 2025 -- Update docstring to include the size argument.
 """
 
 import numpy as np
